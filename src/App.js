@@ -1,8 +1,8 @@
 import { useState, useReducer, useEffect } from 'react';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import AQICard from "./AQICard";
-import AQIHighlightCard from "./AQIHighlightCard";
-import aqiReducer from './aqi-reducer';
+import AQICard from "./AQICard/AQICard";
+import AQIHighlightCard from "./AQIHighlightCard/AQIHighlightCard";
+import aqiReducer from './reducer/aqi-reducer';
 import './App.scss'
 
 const client = new W3CWebSocket('wss://city-ws.herokuapp.com');
@@ -22,6 +22,7 @@ const App = () => {
       if(Object.values(state).length === 0)
       dispatch({type: 'update', payload: data});
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -40,7 +41,7 @@ const App = () => {
           const { aqi, time } = value[value.length - 1];
           return (
               <AQICard
-                // key={key}
+                key={aqi}
                 city={key}
                 aqi={aqi}
                 time={time}

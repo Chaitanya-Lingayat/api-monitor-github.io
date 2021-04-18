@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
-import {getColorByAQI, getFormattedTime} from './aqi-util';
+import {getColorByAQI, getFormattedTime} from '../utils/aqi-util';
 import './AQICard.scss'
 
-export const AQICard = ({
+const AQICard = ({
     city,
     aqi,
     time,
@@ -24,6 +25,14 @@ export const AQICard = ({
         </div>
     )
 };
+
+AQICard.propTypes = {
+    city: PropTypes.string,
+    aqi: PropTypes.string,
+    time: PropTypes.number,
+    aqiList: PropTypes.arrayOf(PropTypes.shape),
+    onClick: PropTypes.func,
+}
 
 
 export default AQICard;

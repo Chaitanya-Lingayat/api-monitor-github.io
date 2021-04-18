@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react'
+import PropTypes from 'prop-types';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
-import {getColorByAQI, getFormattedTime} from './aqi-util';
+import {getColorByAQI, getFormattedTime} from '../utils/aqi-util';
 import './AQIHighlightCard.scss'
 
 const AQIHighlightCard = ({
@@ -35,6 +36,7 @@ const AQIHighlightCard = ({
         chart.cursor.snapToSeries = series;
         chart.cursor.xAxis = dateAxis;
 
+        return () => chart.dispose()
     }, [aqiList]);
 
     const { aqi, time } = aqiList[aqiList.length - 1];
@@ -48,5 +50,9 @@ const AQIHighlightCard = ({
     )
 }
 
+AQIHighlightCard.propTypes = {
+    city: PropTypes.string,
+    aqiList: PropTypes.arrayOf(PropTypes.shape)
+}
 
 export default AQIHighlightCard;
