@@ -41,7 +41,7 @@ const App = () => {
           const { aqi, time } = value[value.length - 1];
           return (
               <AQICard
-                key={aqi}
+                // key={aqi}
                 city={key}
                 aqi={aqi}
                 time={time}
